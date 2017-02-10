@@ -1,0 +1,29 @@
+body {
+    padding: 0;
+    #root {
+        position: relative;
+        img{
+            position: absolute;
+            border: 1px solid;
+        }
+    }
+
+    .btn {
+        text-decoration: none;
+        display: block;
+        text-align: center;
+        margin: 10px auto;
+        height: 40px;
+        width: 80px;
+        line-height: 40px;
+        border: 1px solid #E27272;
+        border-radius: 3px;
+        background-color: #fff;
+        color: #E27272;
+        img {
+            width: 40px;
+            height: 40px;
+        }
+        visibility: hidden;
+    }
+}
