@@ -131,7 +131,7 @@
 
 	        var _this3 = _possibleConstructorReturn(this, (Waterfall.__proto__ || Object.getPrototypeOf(Waterfall)).call(this, props));
 
-	        var itemWidth = _this3.props.imgWidth + _this3.props.margin;
+	        var itemWidth = _this3.props.imgWidth + _this3.props.margin * 2;
 	        var screenWith = (0, _jq2.default)(window).width();
 	        var colCount = parseInt(screenWith / itemWidth);
 	        var colArray = [];
@@ -167,12 +167,7 @@
 	                        colCount: _this.state.colCount,
 	                        margin: _this.state.margin,
 	                        colArray: _this.state.colArray, key: i });
-	                }),
-	                _react2.default.createElement(
-	                    'a',
-	                    { 'class': 'btn', href: 'javascript:;' },
-	                    '\u52A0\u8F7D\u66F4\u591A'
-	                )
+	                })
 	            );
 	        }
 	    }]);

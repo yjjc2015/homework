@@ -41,7 +41,7 @@ class ImgNode extends Component {
 class Waterfall extends Component {
     constructor(props) {
         super(props);
-        let itemWidth = this.props.imgWidth+this.props.margin;
+        let itemWidth = this.props.imgWidth+this.props.margin*2;
         let screenWith = $(window).width();
         let colCount = parseInt(screenWith /itemWidth);
         let colArray=[];
@@ -75,7 +75,7 @@ class Waterfall extends Component {
                          colArray={_this.state.colArray} key={i}/>)
                     })
 }
-                <a class="btn" href="javascript:;">加载更多</a>
+                {/*<a class="btn" href="javascript:;">加载更多</a>*/}
             </div>
         )
     }
