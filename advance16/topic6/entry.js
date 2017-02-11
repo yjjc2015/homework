@@ -26,7 +26,7 @@ const isShow = ($node) => {
 const loadImgs = () => {
     console.log('1');
     $('.item img')
-        .not('.load')
+        .not('load')
         .each(function (index) {
             console.log('2');
             let $node = $(this);

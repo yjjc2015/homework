@@ -21,7 +21,6 @@ const getImgList = (size = 10) => {
     for (let i = 0; i < size; i++) {
         imgList.push(getImg());
     }
-    console.log(imgList);
     return imgList;
 }
 
