@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    <meta charset="UTF-8">
+    <link href="./test.css" rel="stylesheet">
+    <script src="./jq.js">
+    </script>
+</head>
+
+<body>
+   <div class="root"></div> 
+</body>
+
+</html>
+<!--<script src="./test.js"></script>-->
+<script>
+var colors = ["red",'yellow','blue','pink','green','orange','gray'];
+var $window = $(window);
+    colorIndex = 0,
+    length = 0,
+    rootWidth = 900,
+    $root = $('.root'),
+    padding = 1,
+    rowArr = [];//put all cards on single row
+
+var getRandomSize = function() {
+    return parseInt(Math.random()*400)+50;
+};
+var getColor = function() {
+    var color = colors[colorIndex];
+    colorIndex++;
+    if(colorIndex==colors.length){
+        colorIndex=0;
+    }
+    return color;
+};
+var getLength = function() {
+    length=0;
+    for(var i in rowArr) {
+        length += rowArr[i].width + padding*2;
+    }
+    return length;
+}
+var getCard = function() {
+    var styles = {
+        width: getRandomSize(),
+        height: getRandomSize()
+    };
+    var rate = 150/styles.height;
+    styles = {
+        width: parseInt(styles.width*rate),
+        height: 150
+    }
+    return styles;
+};
+
+var render = function() {
+    var rate = rootWidth / getLength();
+    for(var i in rowArr) {
+        var styles = rowArr[i];
+        styles = {
+            width: parseInt(styles.width*rate),
+            height: parseInt(styles.height*rate),
+            padding: padding
+        }
+        var $child = $('<img data-src="https://unsplash.it/'+styles.width+'/'+styles.height+'?random"/>');
+        $child.text(styles.width+' X '+styles.height).css(styles).addClass('child');
+        $root.append($child);
+    }
+    rowArr=[];
+};
+
+var addCard = function() {
+    var cardStyles = getCard();
+    if(cardStyles.width+getLength()>rootWidth){
+        render();
+    } 
+    rowArr.push(cardStyles);
+};
+
+var initCards = function() {
+    for(var i=0; i<100;i++){
+        addCard();
+    }
+};
+
+initCards();
+
+var isShow = function($img) {
+    if($img.offset().top < $window.scrollTop() + $window.height() && $img.offset().top + $img.outerHeight() > $window.scrollTop()) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+var showImgs = function() {
+    console.log('1');
+    $('img').not('.showed').each(function(i,e){
+    console.log('2');
+        var $this = $(this);
+        if(isShow($this)) {
+            $this.attr('src',$this.attr('data-src')).addClass('showed');
+        }
+    });
+}
+
+$window.on('scroll', function(){
+    showImgs();
+})
+
+showImgs();
+
+</script>
